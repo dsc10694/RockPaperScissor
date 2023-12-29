@@ -1,65 +1,138 @@
-<script>
-   function getComputerChoice() {
-    compNum = (Math.floor(Math.random()*3) +1) ; //numerical value for each choice*/
-    
-    
-    if (compNum == 1) {
-        compChoice = ('rock');
-    }
-    else if (compNum == 2){
-        compChoice = ('paper');
-    }
-    else if (compNum == 3){
-        compChoice = ('scissors');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = 'rock'> Rock </button>
+    <button id = 'scissors'> scissor </button>
+    <button id = 'paper'> paper </button>
+    <script>
+        function getComputerChoice() {
+         compNum = (Math.floor(Math.random()*3) +1) ; //numerical value for each choice*/
+         
+         
+         if (compNum == 1) {
+             compChoice = ('rock');
+         }
+         else if (compNum == 2){
+             compChoice = ('paper');
+         }
+         else if (compNum == 3){
+             compChoice = ('scissors');
+             
+     
+         }
+         result =  ( compChoice);
+     
+         }
+         getComputerChoice();
+         
+         
+         
+         function playRound(computerSelection,playerSelection) {
+             
+             computerSelection = compChoice;
+             playerSelection
+             result ='';
+            
+             if (playerSelection.toLowerCase() == computerSelection){
+                 result = ('You tied');
+             }
+             else if (playerSelection.toLowerCase()=='rock' && computerSelection == 'paper'){
+                 result = ('You lost');
+     
+             }
+             else if (playerSelection.toLowerCase()== 'rock' && computerSelection=='scissors'){
+                 result = ('You won this round');
+             }
+             else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='rock'){
+                result = ('You won this round');
+             }
+             else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='scissors'){
+                 result = ('You lost');
+             }
+             else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='rock'){
+                 result = ('You lost');
+             }
+             else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='paper'){
+                result = ('You won this round');
+             }
+             else{result = ('The input value isnt accept reset page and try again.')}
+             
+       
+     
+             
+         }
+         const rock = document.querySelector('#rock');
+         const paper = document.querySelector('#paper');
+         const scissors = document.querySelector('#scissors');
+         
+          rock.addEventListener('click', ()=>{
+            playRound(compChoice, 'rock')
+            computerSelection = compChoice;
+            
+           
+         });
 
-    }
-
-    }
-    getComputerChoice();
-    
-    
-    
-    function playRound(playerSelection, computerSelection) {
+         
+         
+         compWin = 0
+         playerWin=0
         
-        computerSelection = compChoice;
-        playerSelection = prompt('Do you chose Rock, Paper, or Scissors?');
-        if (playerSelection.toLowerCase() == computerSelection){
-            console.log('You tied')
-        }
-        else if (playerSelection.toLowerCase()=='rock' && computerSelection == 'paper'){
-            console.log('You lost paper covers rock.');
+         
 
-        }
-        else if (playerSelection.toLowerCase()== 'rock' && computerSelection=='scissors'){
-            console.log('You won rock breaks scissors');
-        }
-        else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='rock'){
-            console.log('you win paper covers rock');
-        }
-        else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='scissors'){
-            console.log('you lost scissors cuts paper');
-        }
-        else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='rock'){
-            console.log('you lose rock breaks scissors');
-        }
-        else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='paper'){
-            console.log('you win scissors cuts paper');
-        }
-        else{console.log('The input value isnt accept reset page and try again.')}
-        
-  
+         paper.addEventListener('click',() => {
+            playRound(compChoice, 'paper')
+            computerSelection = compChoice;
+            
+            if (result = 'You won this round'){
+                 playerWin+=1 
+            }
+            else if (result = ('You lost')){
+                 compWin+=1
 
-        
-    }
-    
-    function game(){
-        playRound();
-        playRound();
-        playRound();
-        playRound();
-        playRound();
-        
-    }
-    game();
-</script>
+            }
+            return playerWin
+            return compWin
 
+
+
+         });
+         console.log(compWin);
+         console.log(playerWin);
+
+
+         scissors.addEventListener('click',()=>{
+            playRound(compChoice, 'scissors')
+            computerSelection = compChoice;
+         });
+
+         const body = document.querySelector('body');
+         const div = document.createElement('div');
+         const results = document.createElement('result');
+         div.appendChild(results);
+         body.appendChild(div);
+
+         
+            
+                
+            
+
+
+            
+         
+         
+         console.log('results');
+
+         
+
+         
+         
+     </script>
+     
+     
+</body>
+</html>
