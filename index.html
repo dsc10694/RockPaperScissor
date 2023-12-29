@@ -6,58 +6,51 @@
     <title>Document</title>
 </head>
 <body>
-    <button id = 'rock'> Rock </button>
-    <button id = 'scissors'> scissor </button>
-    <button id = 'paper'> paper </button>
+    <button id = '1'> Rock </button>
+    <button id = '2'> Scissors </button>
+    <button id = '3'> paper </button>
     <script>
         function getComputerChoice() {
          compNum = (Math.floor(Math.random()*3) +1) ; //numerical value for each choice*/
          
          
-         if (compNum == 1) {
-             compChoice = ('rock');
-         }
-         else if (compNum == 2){
-             compChoice = ('paper');
-         }
-         else if (compNum == 3){
-             compChoice = ('scissors');
+         
              
      
          }
-         result =  ( compChoice);
+         
      
-         }
+         
          getComputerChoice();
          
          
          
          function playRound(computerSelection,playerSelection) {
              
-             computerSelection = compChoice;
+             computerSelection 
              playerSelection
              result ='';
             
-             if (playerSelection.toLowerCase() == computerSelection){
+             if (playerSelection == computerSelection){
                  result = ('You tied');
              }
-             else if (playerSelection.toLowerCase()=='rock' && computerSelection == 'paper'){
+             else if (playerSelection== 1 && computerSelection == 3){
                  result = ('You lost');
      
              }
-             else if (playerSelection.toLowerCase()== 'rock' && computerSelection=='scissors'){
+             else if (playerSelection()== 1 && computerSelection== 2){
                  result = ('You won this round');
              }
-             else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='rock'){
+             else if (playerSelection == 3 && computerSelection== 1){
                 result = ('You won this round');
              }
-             else if (playerSelection.toLowerCase()== 'paper' && computerSelection=='scissors'){
+             else if (playerSelection == 3 && computerSelection==2){
                  result = ('You lost');
              }
-             else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='rock'){
+             else if (playerSelection == 2 && computerSelection== 1){
                  result = ('You lost');
              }
-             else if (playerSelection.toLowerCase()== 'scissors' && computerSelection=='paper'){
+             else if (playerSelection.toLowerCase()== 2 && computerSelection== 3){
                 result = ('You won this round');
              }
              else{result = ('The input value isnt accept reset page and try again.')}
@@ -71,7 +64,7 @@
          const scissors = document.querySelector('#scissors');
          
           rock.addEventListener('click', ()=>{
-            playRound(compChoice, 'rock')
+            playRound(compNum, '1')
             computerSelection = compChoice;
             
            
@@ -85,7 +78,7 @@
          
 
          paper.addEventListener('click',() => {
-            playRound(compChoice, 'paper')
+            playRound(compChoice, '3')
             computerSelection = compChoice;
             
             if (result = 'You won this round'){
@@ -106,7 +99,7 @@
 
 
          scissors.addEventListener('click',()=>{
-            playRound(compChoice, 'scissors')
+            playRound(compChoice, '2')
             computerSelection = compChoice;
          });
 
