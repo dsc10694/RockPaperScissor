@@ -140,8 +140,10 @@
 
          paper.addEventListener('click',() => {
             if ((compWin == 5) || (playerWin == 5)){
+                gameFinalResults()
             paper.removeEventListener('click', playRound)
             results.appendChild(gameOver)
+            alert(finalResult)
             
             }
             else {
@@ -155,8 +157,10 @@
          
          scissors.addEventListener('click',()=>{
             if ((compWin == 5) || (playerWin == 5)){
+                gameFinalResults()
                 scissors.removeEventListener('click', playRound)
                 results.appendChild(gameOver)
+                alert(finalResult)
                 
             }
             else {
