@@ -72,12 +72,14 @@
          const div = document.createElement('div');
          const results = document.createElement('div');
          const totalGames = document.createElement('div');
-         totalGames.innerHTML = ('The current score is '+compWin+ ' wins for the Computer and '+playerWin+' wins for the player');
-
+         score()
          results.appendChild(totalGames);
                 
          div.appendChild(results);
          body.appendChild(div);
+         const gameOver=document.createElement('div');
+        
+        gameOver.innerHTML = 'Game is over press restart game to start over';
 
          function gameIf (){
             if (result ==0 ) {
@@ -104,30 +106,64 @@
             totalGames.innerHTML = ('The current score is '+compWin+ ' wins for the Computer and '+playerWin+' wins for the player');
             results.appendChild(totalGames);
          }
-
+         function gameFinalResults() {
+            if (compWin ==5){
+                finalResult = ('The Winner is the Computer')
+            }
+            else if (playerWin == 5){
+                finalResult = ('Winner is the Player')
+            }
+         }
          compWin= 0
          playerWin =0
           
          rock.addEventListener('click', ()=>{
             
-            
-            playRound(compNum, 1)
-            gameIf()
-            
+            if ((compWin == 5) || (playerWin == 5)){
+                gameFinalResults()
+                rock.removeEventListener('click', playRound) 
+                results.appendChild(gameOver);
+                alert(finalResult)
+                
+                
+
+                
+            }
+            else{
+                playRound(compNum, 1)
+                gameIf()
+                
+            }
             score()
          });
 
 
          paper.addEventListener('click',() => {
-            playRound(compNum, 3 )
-            gameIf()
+            if ((compWin == 5) || (playerWin == 5)){
+            paper.removeEventListener('click', playRound)
+            results.appendChild(gameOver)
+            
+            }
+            else {
+                playRound(compNum, 3 )
+                gameIf()
+            
+        }
             score()
          });
         
          
          scissors.addEventListener('click',()=>{
-            playRound(compNum, 2)
-            gameIf()
+            if ((compWin == 5) || (playerWin == 5)){
+                scissors.removeEventListener('click', playRound)
+                results.appendChild(gameOver)
+                
+            }
+            else {
+                playRound(compNum, 2)
+                gameIf()
+            }
+            
             score()
          });
 
