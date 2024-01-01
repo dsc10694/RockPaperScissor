@@ -9,48 +9,45 @@
     <button id = '1'> Rock </button>
     <button id = '2'> Scissors </button>
     <button id = '3'> paper </button>
+    <button id ='4'>Reset Game</button>
     <script>
-        function getComputerChoice() {
+        function randNum(){
          compNum = (Math.floor(Math.random()*3) +1) ; //numerical value for each choice*/
+    }
          
          
-         console.log(compNum)
+         
+     
+         
+         
+         
+         
+         
+         function playRound(player1, player2 ) {
              
-     
-         }
-         
-     
-         
-         getComputerChoice();
-         
-         
-         
-         function playRound(computerSelection,playerSelection ) {
-             getComputerChoice()
-             computerSelection =compNum
              
              result ='';
             
-             if (playerSelection == computerSelection){
+             if (player2 == player1){
                  result = 0;
              }
-             else if (playerSelection== 1 && computerSelection == 3){
+             else if (player2== 1 && player1 == 3){
                  result = 2;
      
              }
-             else if (playerSelection == 1 && computerSelection== 2){
+             else if (player2 == 1 && player1== 2){
                  result = 1;
              }
-             else if (playerSelection == 3 && computerSelection== 1){
+             else if (player2 == 3 && player1== 1){
                 result = 1;
              }
-             else if (playerSelection == 3 && computerSelection==2){
+             else if (player2 == 3 && player1==2){
                  result = 2;
              }
-             else if (playerSelection == 2 && computerSelection== 1){
+             else if (player2 == 2 && player1== 1){
                  result = 2;
              }
-             else if (playerSelection== 2 && computerSelection== 3){
+             else if (player2== 2 && player1== 3){
                 result = 1;
              }
              else  {result = -1}
@@ -60,18 +57,21 @@
      
              
          }
-         compWin= 0
-         playerWin =0
-
+         player2= 0
+         player1 =0
+         
          const rock = document.getElementById( '1' );
          const paper = document.getElementById('3');
          const scissors = document.getElementById('2');
+         const reset = document.getElementById('4');
          
          
          const body = document.querySelector('body');
          const div = document.createElement('div');
          const results = document.createElement('div');
          const totalGames = document.createElement('div');
+         const finalResult = document.createElement('div')
+
          score()
          results.appendChild(totalGames);
                 
@@ -79,7 +79,7 @@
          body.appendChild(div);
          const gameOver=document.createElement('div');
         
-        gameOver.innerHTML = 'Game is over press restart game to start over';
+        gameOver.innerHTML = ('Game is over press restart game to start over');
 
          function gameIf (){
             if (result ==0 ) {
@@ -89,12 +89,12 @@
             else if (result== 1){
                 results.innerHTML ='You Won this round'
                 
-                playerWin+=1
+                player1+=1
             }
             else if (result == 2){
                 results.innerHTML='You lost this round'
                 
-                compWin+=1
+                player2+=1
             }
             else if (result == -1){
                 results.innerHTML = ('This value is not accept')
@@ -103,73 +103,105 @@
 
          }
          function score(){
-            totalGames.innerHTML = ('The current score is '+compWin+ ' wins for the Computer and '+playerWin+' wins for the player');
-            results.appendChild(totalGames);
+            totalGames.innerHTML = ('The current score is '+player1+ ' wins for the player 1 and '+player2+' wins for the player 2');
+            div.appendChild(totalGames);
          }
          function gameFinalResults() {
-            if (compWin ==5){
-                finalResult = ('The Winner is the Computer')
+            if (player2 ==5){
+                 
+                finalResult.innerHTML = ('The Winner is Player 2')
+                results.appendChild(finalResult)
+
             }
-            else if (playerWin == 5){
-                finalResult = ('Winner is the Player')
+            else if (player1 == 5){
+                
+                finalResult.innerHTML = ('Winner is the Player 1')
+                div.appendChild(finalResult)
             }
-         }
-         compWin= 0
-         playerWin =0
-          
-         rock.addEventListener('click', ()=>{
+
             
-            if ((compWin == 5) || (playerWin == 5)){
+         }
+         function rockGame(){
+                randNum()
+            if ((player2 == 5) || (player1 == 5)){
                 gameFinalResults()
-                rock.removeEventListener('click', playRound) 
-                results.appendChild(gameOver);
-                alert(finalResult)
-                
-                
+                 
+                div.appendChild(gameOver);
+                 rock.removeEventListener('click', rockGame)    
 
                 
             }
             else{
-                playRound(compNum, 1)
+                playRound(1, compNum)
                 gameIf()
                 
             }
             score()
-         });
-
-
-         paper.addEventListener('click',() => {
-            if ((compWin == 5) || (playerWin == 5)){
-                gameFinalResults()
-            paper.removeEventListener('click', playRound)
-            results.appendChild(gameOver)
-            alert(finalResult)
             
             }
-            else {
-                playRound(compNum, 3 )
+
+            function paperGame(){
+                randNum()
+            if ((player2 == 5) || (player1 == 5)){
+                gameFinalResults()
+                 
+                div.appendChild(gameOver);
+               paper.removeEventListener('click', paperGame)    
+
+                
+            }
+            else{
+                playRound(1, compNum)
                 gameIf()
-            
-        }
+                
+            }
             score()
-         });
+            
+            }
+            function scissorsGame(){
+                randNum()
+            if ((player2 == 5) || (player1 == 5)){
+                gameFinalResults()
+                 
+                div.appendChild(gameOver);
+                
+                
+                
+                
+                
+                scissors.removeEventListener('click', scissorsGame)    
+
+                
+            }
+            else{
+                playRound(1, compNum)
+                gameIf()
+                
+            }
+            score()
+            
+            }
+         player2= 0
+         player1 =0
+          
+         function resetGame (){
+            player2 = 0
+            player1 = 0
+            totalGames.innerHTML = ('The current score is '+player2+ ' wins for the Computer and '+player1+' wins for the player');
+            results.innerHTML = '';
+            gameOver.innerHTML ='';
+            finalResult.innerHTML = '';
+
+         }
+         rock.addEventListener('click', rockGame )
+         
+         
+         paper.addEventListener('click',paperGame)
         
          
-         scissors.addEventListener('click',()=>{
-            if ((compWin == 5) || (playerWin == 5)){
-                gameFinalResults()
-                scissors.removeEventListener('click', playRound)
-                results.appendChild(gameOver)
-                alert(finalResult)
-                
-            }
-            else {
-                playRound(compNum, 2)
-                gameIf()
-            }
-            
-            score()
-         });
+         scissors.addEventListener('click',scissorsGame)
+
+         reset.addEventListener('click', resetGame)
 
 
          
