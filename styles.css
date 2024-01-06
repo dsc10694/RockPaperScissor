@@ -1,0 +1,28 @@
+body{
+    background-color: aquamarine;
+}
+
+.choices{
+   
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    justify-content: space-between;
+    
+
+}
+    
+
+.restartC{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.tContainer{
+    
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
